@@ -1,4 +1,4 @@
-const {createAccount, loginAccount} = require('../service/user');
+const {createAccount, loginAccount, getUserInformation} = require('../service/user');
 
 const signup = async(req, res) => {
     const {username, email, password} = req.body;
@@ -12,7 +12,15 @@ const login = async(req, res) => {
     res.send(find);
 }
 
+const userInfo = async(req, res) => {
+    const {userId} = req.body;
+    const user = await getUserInformation(userId);
+    res.send(user);
+}
+
+
 module.exports = {
     signup,
-    login
+    login,
+    userInfo
 }

@@ -25,7 +25,16 @@ const loginAccount = async(email, password) => {
     return {status:200, message:'login success', account:findemail};
 }
 
+const getUserInformation = async(userId) => {
+    const user = await User.findById(userId).populate('post');
+    if(!user){
+        return {status:400, message:'user not found'};
+    }
+    return {status:200, message:'user found', user};
+}
+
 module.exports = {
     createAccount,
-    loginAccount
+    loginAccount,
+    getUserInformation
 }
