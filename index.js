@@ -13,6 +13,8 @@ mongoose.connect(DATABASE_URL)
 
 const app = express();
 
+app.use(express.static('upload'));
+
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 
