@@ -6,7 +6,8 @@ const config = (envirovment) => {
         BASE_URL = envirovment.BASE_LOCAL + PORT;
         DATABASE_URL = envirovment.MONGO_LOCAL;
     }else if(envirovment.ENVIROVMENT === "prod"){
-        
+        BASE_URL = "https://infrainsight.vercel.app/";
+        DATABASE_URL = envirovment.MONGODB_URI;
     }
     return {PORT, BASE_URL, DATABASE_URL};
 }
