@@ -9,6 +9,7 @@ const config = (envirovment) => {
         BASE_URL = "https://infrainsight.vercel.app/";
         DATABASE_URL = envirovment.MONGODB_URI;
     }
+    console.log(DATABASE_URL);
     return {PORT, BASE_URL, DATABASE_URL};
 }
 
