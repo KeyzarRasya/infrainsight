@@ -21,6 +21,10 @@ app.use(express.json());
 app.use('/user', userRoutes);
 app.use('/post', postRoutes);
 
+app.get('/', (req, res) => {
+    res.send('home');
+})
+
 app.listen(PORT, () => {
     console.log(`Server running at ${BASE_URL}`);   
 })
