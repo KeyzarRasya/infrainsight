@@ -1,5 +1,5 @@
 const express = require('express')
-const {posting, fetchPost} = require('../controller/Post')
+const {posting, fetchPost, uploadComment, clickLike, clickShare, clickUnLike} = require('../controller/Post')
 const multer = require('multer');
 const path = require('path');
 
@@ -34,6 +34,10 @@ const routes = express.Router();
 
 routes.post('/posting', upload.single('image'), posting);
 routes.get('/all', fetchPost);
+routes.post('/comment', uploadComment);
+routes.post('/like', clickLike);
+routes.post('/share', clickShare);
+routes.post('/unlike', clickUnLike)
 
 
 module.exports = routes;

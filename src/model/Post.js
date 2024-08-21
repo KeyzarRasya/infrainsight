@@ -19,7 +19,22 @@ const postSchema = new mongoose.Schema({
     publisher:{
         type:mongoose.Schema.ObjectId,
         require:true
-    }
+    },
+    like:{
+        type:Number,
+        default:0
+    },
+    share:{
+        type:Number,
+        default:0
+    },
+    comment:[
+        {
+            type:mongoose.Schema.ObjectId,
+            ref:'Comment',
+            default:[]
+        }
+    ]
 })
 
 const Model = mongoose.model('Post', postSchema);
