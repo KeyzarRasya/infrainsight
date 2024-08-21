@@ -16,6 +16,9 @@ const postSchema = new mongoose.Schema({
         type:String,
         require:true
     },
+    koordinat:{
+        type:[Number]
+    },
     publisher:{
         type:mongoose.Schema.ObjectId,
         require:true

@@ -2,9 +2,9 @@ const {createPost, getAllPost, makeComment, addLike, addShare, unLike} = require
 
 
 const posting = async(req, res) => {
-    const {title, description, alamat, userId} = req.body;
+    const {title, description, alamat, userId, koordinat} = req.body;
     const {filename} = req.file;
-    const post = await createPost({filename, title, description, alamat}, userId);
+    const post = await createPost({filename, title, description, alamat, koordinat}, userId);
     res.send(post); 
 }
 
