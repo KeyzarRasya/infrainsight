@@ -1,4 +1,4 @@
-const {createPost, getAllPost, makeComment, addLike, addShare, unLike} = require('../service/post');
+const {createPost, getAllPost, makeComment, addLike, addShare, unLike, getSpecificPost} = require('../service/post');
 
 
 const posting = async(req, res) => {
@@ -10,6 +10,12 @@ const posting = async(req, res) => {
 
 const fetchPost = async(req, res) => {
     const post = await getAllPost();
+    res.send(post);
+}
+
+const getPost = async(req, res) => {
+    const {postId} = req.params;
+    const post = await getSpecificPost(postId);
     res.send(post);
 }
 
@@ -43,5 +49,6 @@ module.exports = {
     uploadComment,
     clickLike,
     clickShare,
-    clickUnLike
+    clickUnLike,
+    getPost
 }

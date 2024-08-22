@@ -20,11 +20,25 @@ const getAllPost = async() => {
     return {status:200, message:'success fetch all post', post};
 }
 
+const getSpecificPost = async(postId) => {
+    const post = await Post.findById(postId).populate('publisher').populate('comment');
+    if(!post){
+        return {status:400, message:'post not found'};
+    }
+    return {status:200, message:'post found', post};
+}
+
 const makeComment = async(userId, postId, comment) => {
+    const user = await User.findById(userId);
+    if(!user){
+        return {status:200, message:'user not found'};
+    }
     const newComment = new Comment({
         user:userId,
+        username:user.username,
         comment:comment
     })
+
     const post = await Post.findById(postId);
     if(!post){
         return {status:400, message:'post not found'};
@@ -71,5 +85,6 @@ module.exports = {
     makeComment,
     addLike,
     addShare,
-    unLike
+    unLike,
+    getSpecificPost
 }

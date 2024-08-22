@@ -21,7 +21,7 @@ const postSchema = new mongoose.Schema({
     },
     publisher:{
         type:mongoose.Schema.ObjectId,
-        require:true
+        ref:'User'
     },
     like:{
         type:Number,
