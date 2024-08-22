@@ -4,6 +4,7 @@ const express = require('express');
 const {config} = require('./src/helper/configuration')
 const userRoutes = require('./src/routes/User')
 const postRoutes = require('./src/routes/Post');
+const cors = require('cors');
 
 const {PORT, DATABASE_URL, BASE_URL} = config(process.env);
 
@@ -13,12 +14,7 @@ mongoose.connect(DATABASE_URL)
 
 const app = express();
 
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    next();
-});
+app.use(cors());
 
 app.use(express.static('upload'));
 
