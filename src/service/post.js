@@ -3,7 +3,8 @@ const User = require('../model/User');
 const Comment = require('../model/Comment');
 
 const createPost = async(postmetada, userId) => {
-    const post = new Post({image:postmetada.filename, title:postmetada.title, description:postmetada.description, alamat:postmetada.alamat, koordinat:postmetada.koordinat });
+    const parsedKoordinat = postmetada.koordinat.split(',').map(Number);
+    const post = new Post({image:postmetada.filename, title:postmetada.title, description:postmetada.description, alamat:postmetada.alamat, koordinat:parsedKoordinat });
     const findUser = await User.findById(userId);
     if(!findUser){
         return {status:400, message:'user not found'};
