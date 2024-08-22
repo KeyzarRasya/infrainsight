@@ -37,7 +37,10 @@ const postSchema = new mongoose.Schema({
             ref:'Comment',
             default:[]
         }
-    ]
+    ],
+    uploadedAt:{
+        type:String
+    }
 })
 
 const Model = mongoose.model('Post', postSchema);

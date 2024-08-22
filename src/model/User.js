@@ -18,7 +18,11 @@ const userSchema = new mongoose.Schema({
         ref:'Post',
         require:false,
         default:[]
-    }]
+    }],
+    isCreatingPost:{
+        type:Boolean,
+        default:false
+    }
 })
 
 const Model = mongoose.model('User', userSchema);

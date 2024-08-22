@@ -1,15 +1,18 @@
 const Post = require('../model/Post');
 const User = require('../model/User');
 const Comment = require('../model/Comment');
+const {formatDate} = require('../helper/formatting')
+
 
 const createPost = async(postmetada, userId) => {
     const parsedKoordinat = postmetada.koordinat.split(',').map(Number);
-    const post = new Post({image:postmetada.filename, title:postmetada.title, description:postmetada.description, alamat:postmetada.alamat, koordinat:parsedKoordinat });
+    const post = new Post({image:postmetada.filename, title:postmetada.title, description:postmetada.description, alamat:postmetada.alamat, koordinat:parsedKoordinat, uploadedAt:formatDate() });
     const findUser = await User.findById(userId);
     if(!findUser){
         return {status:400, message:'user not found'};
     }
     post.publisher = userId;
+    findUser.isCreatingPost = true;
     await post.save();
     findUser.post.push(post);
     await findUser.save();
